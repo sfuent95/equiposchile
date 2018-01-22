@@ -29,7 +29,7 @@
             $("#img").attr("src",data.datos.equi_urlplantel);
             $("#res").html(data.datos.equi_res);
 
-            fila ='<a href="palmares.html?id='+data.datos.equi_id+'"><i><b><font size="2">--->Palmares</font></b></i></a>';
+            fila ='<a href="palmares.html?id='+data.datos.equi_id+'"><button type="button" class="btn btn-primary">Palmares</button></a>';
               $("#palmares").append(fila);
         })
         .fail(function( jqXHR, textStatus, errorThrown ) {
