@@ -19,7 +19,7 @@ class ModelEquiposChile{
 		$responsearray = array();
 		try{
 			$result = array();
-			$stm=$this->pdo->prepare("SELECT * FROM equipos");
+			$stm=$this->pdo->prepare("SELECT * FROM equipos, palmares where equi_id = pal_equi_id");
 			$stm->execute();
 			foreach($stm->fetchALL(PDO::FETCH_OBJ) as $r){
 				$equiposchile = new EquiposChile();
@@ -47,8 +47,8 @@ class ModelEquiposChile{
 	public function Obtener($id){
         $jsonresponse = array();
         try{
-            $stm = $this->pdo->prepare("SELECT * FROM equipos
-            							where equi_id = ?");
+            $stm = $this->pdo->prepare("SELECT * FROM equipos,
+            							palmares where equi_id = pal_equi_id AND equi_id = ?");
             $stm->execute(array($id));
             $r = $stm->fetch(PDO::FETCH_OBJ);
 
@@ -61,6 +61,13 @@ class ModelEquiposChile{
 						$equiposchile->__SET('equi_res', $r->equi_res);
 						$equiposchile->__SET('equi_urlinsignia', $r->equi_urlinsignia);
 						$equiposchile->__SET('equi_urlplantel', $r->equi_urlplantel);
+
+						$equiposchile->__SET('pal_primera', $r->pal_primera);
+						$equiposchile->__SET('pal_primerab', $r->pal_primerab);
+						$equiposchile->__SET('pal_copachile', $r->pal_copachile);
+						$equiposchile->__SET('pal_supercopa', $r->pal_supercopa);
+						$equiposchile->__SET('pal_sudamericana', $r->pal_sudamericana);
+						$equiposchile->__SET('pal_libertadores', $r->pal_libertadores);
 
             $jsonresponse['success'] = true;
             $jsonresponse['message'] = 'Se obtuvo  correctamente';

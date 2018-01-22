@@ -9,6 +9,13 @@ class EquiposChile{
 	private $equi_res;
 	private $equi_urlinsignia;
 	private $equi_urlplantel;
+	private $pal_equi_id;
+	private $pal_primera;
+	private $pal_primerab;
+	private $pal_copachile;
+	private $pal_supercopa;
+	private $pal_sudamericana;
+	private $pal_libertadores;
 
 	public function __GET ($k){
 		return $this->$k;
